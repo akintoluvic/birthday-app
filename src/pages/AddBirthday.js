@@ -77,11 +77,11 @@ const AddBirthday = () => {
                         .required('Required'),
                     phoneNumber: Yup.number()
                         .max(11, 'Must be 11 characters or less')
-                        .required('Required'),
+                        .required('Enter a phone number'),
 
                     email: Yup.string()
                         .email('Invalid email address')
-                        .required('Required'),
+                        .required('Please enter a valid email address'),
 
                     acceptedTerms: Yup.boolean()
                         .required('Required')
@@ -121,7 +121,7 @@ const AddBirthday = () => {
                         label="Phone Number"
                         name="phoneNumber"
                         type="number"
-                        placeholder="Doe"
+                        placeholder="08034567982"
                     />
 
                     <MyTextInput
@@ -131,7 +131,7 @@ const AddBirthday = () => {
                         placeholder="jane@formik.com"
                     />
 
-                    <MySelect label="Job Type" name="jobType">
+                    <MySelect label="Job Type" multiple="" name="jobType">
                         <option value="">Select a job type</option>
                         <option value="designer">Designer</option>
                         <option value="development">Developer</option>
