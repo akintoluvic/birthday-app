@@ -1,35 +1,17 @@
-import logo from './logo.svg';
 import {
-  BrowserRouter as Router,
-  Switch,
+  BrowserRouter as Router, Switch,
   Route,
-  Link
 } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import DetailsPage from "./components/DetailsPage";
-import Home from "./components/Home";
-import AddBirthday from "./components/AddBirthday";
+import DetailsPage from "./pages/DetailsPage";
+import Home from "./pages/Home";
+import AddBirthday from "./pages/AddBirthday";
 
 function App() {
   return (
     <Router>
-    <div className="App bg-gray-800">
-      <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-          </ul>
-        </nav>
-
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
+      <div className="App min-h-screen">
+        <Navbar />
         <Switch>
           <Route path="/new">
             <AddBirthday />
@@ -41,7 +23,7 @@ function App() {
             <Home />
           </Route>
         </Switch>
-    </div>
+      </div>
     </Router>
   );
 }
