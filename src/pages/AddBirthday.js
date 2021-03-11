@@ -56,12 +56,13 @@ const MySelect = ({ label, ...props }) => {
 const AddBirthday = () => {
     return (
         <PageWrapper>
-            <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-2xl p-8 mt-12">
+            <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-2xl p-8">
             <h1 className="text-3xl text-center mb-5">Add Birthday</h1>
             <Formik
                 initialValues={{
                     firstName: '',
                     lastName: '',
+                    phoneNumber: '',
                     email: '',
                     acceptedTerms: false, // added for our checkbox
                     jobType: '', // added for our select
@@ -73,6 +74,9 @@ const AddBirthday = () => {
                         .required('Required'),
                     lastName: Yup.string()
                         .max(20, 'Must be 20 characters or less')
+                        .required('Required'),
+                    phoneNumber: Yup.number()
+                        .max(11, 'Must be 11 characters or less')
                         .required('Required'),
 
                     email: Yup.string()
@@ -110,6 +114,13 @@ const AddBirthday = () => {
                         label="Last Name"
                         name="lastName"
                         type="text"
+                        placeholder="Doe"
+                    />
+
+                    <MyTextInput
+                        label="Phone Number"
+                        name="phoneNumber"
+                        type="number"
                         placeholder="Doe"
                     />
 
