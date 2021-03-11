@@ -1,25 +1,48 @@
 import logo from './logo.svg';
-// import './App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Navbar from "./components/Navbar";
+import DetailsPage from "./components/DetailsPage";
+import Home from "./components/Home";
+import AddBirthday from "./components/AddBirthday";
 
 function App() {
   return (
+    <Router>
     <div className="App bg-gray-800">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      
+      <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+              <Link to="/users">Users</Link>
+            </li>
+          </ul>
+        </nav>
+
+        {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+        <Switch>
+          <Route path="/new">
+            <AddBirthday />
+          </Route>
+          <Route path="/details">
+            <DetailsPage />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
     </div>
+    </Router>
   );
 }
 
