@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PageWrapper from "../components/PageWrapper";
 import { Formik, Form, useField } from 'formik';
 import * as Yup from 'yup';
+import axios from "axios"
 
 const MyTextInput = ({ label, ...props }) => {
     // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
@@ -27,7 +28,7 @@ const MyCheckbox = ({ children, ...props }) => {
     // in `field` alongside `name`, `value`, `onChange`, and `onBlur`
     const [field, meta] = useField({ ...props, type: 'checkbox' });
     return (
-        <div className=" mb-2 mt-4">
+        <div className="mb-2 mt-4">
             <label className="checkbox-input text-sm">
                 <input className="mr-2 rounded" type="checkbox" {...field} {...props} />
                 {children}
@@ -54,6 +55,18 @@ const MySelect = ({ label, ...props }) => {
 };
 
 const AddBirthday = () => {
+    const verifyEmail = async (email) => {
+        await axios.post(`https://api.emailverifyapi.com/v3/lookups/json?
+            key=${process.env.REACT_APP_API_KEY}
+            &email=${email}`
+        ).then(res => console.log(res.data))
+    }
+    useEffect(() => {
+        verifyEmail('akintoluvic@gmail.com')
+        // return () => {
+        //     cleanup
+        // }
+    }, [])
     return (
         <PageWrapper>
             <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-2xl p-8">
@@ -96,6 +109,7 @@ const AddBirthday = () => {
                 })}
 
                 onSubmit={(values, { setSubmitting }) => {
+                    
                     setTimeout(() => {
                         alert(JSON.stringify(values, null, 2));
                         setSubmitting(false);
@@ -140,7 +154,7 @@ const AddBirthday = () => {
                     </MySelect>
 
                     <MyCheckbox name="acceptedTerms">
-                        I accept the terms and conditions
+                        Recieve Birthday notifications
                     </MyCheckbox>
 
                     <button className="bg-indigo-600 text-white rounded py-2 mt-4" type="submit">Submit</button>

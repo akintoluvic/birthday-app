@@ -5,6 +5,8 @@ import Navbar from "./components/Navbar";
 import DetailsPage from "./pages/DetailsPage";
 import Home from "./pages/Home";
 import AddBirthday from "./pages/AddBirthday";
+const dotenv = require('dotenv')
+dotenv.config()
 
 function App() {
   return (
